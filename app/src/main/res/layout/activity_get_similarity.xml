@@ -16,4 +16,14 @@
         android:layout_alignParentBottom="true"
         opencv:show_fps="true" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewOverlay"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:alpha="0.3" />
+
 </RelativeLayout>

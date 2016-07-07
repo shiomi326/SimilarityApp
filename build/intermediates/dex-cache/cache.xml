@@ -1,3 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.4.0_b45655ba8a01e1e14318e3c70aeb9f522432635c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_a58e1656a0fcd571c6fb45b27ab62fa9d46f299b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_7b33886052ff4468fdec592853a8b0f642cea63e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="31a9b9efc74d9075a7812d2e5fa4c2432090d401">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_638053fc3f7c50965346e21cd3aef9336c8639a4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_b0d1ae26a783285a849af8a6d48c816ac3950dbc\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_f0c2c7ecfa9717636392f4c2cd079eaa2fec6a68\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3c4ffa9055565a6637454b9595e9b65d7d81f628">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_164cbe2219c90f0830cc5ccb7f97695f02fd1343\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_5af86ba3388513785eace747d5264b451d18477e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_19f1ce5dd751469c9a37cb1f5a837bd0acba20eb\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_5b42f9a25095eb7d7a4d9ec0a7f418923a287170\classes.dex" />
+    </item>
+
+</items>

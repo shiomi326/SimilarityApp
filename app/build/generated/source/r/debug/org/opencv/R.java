@@ -8,16 +8,16 @@ package org.opencv;
 
 public final class R {
 	public static final class attr {
-		public static final int camera_id = 0x7f010096;
-		public static final int show_fps = 0x7f010095;
+		public static final int camera_id = 0x7f01009b;
+		public static final int show_fps = 0x7f01009a;
 	}
 	public static final class id {
-		public static final int any = 0x7f0d0014;
-		public static final int back = 0x7f0d0015;
-		public static final int front = 0x7f0d0016;
+		public static final int any = 0x7f0d001b;
+		public static final int back = 0x7f0d001c;
+		public static final int front = 0x7f0d001d;
 	}
 	public static final class styleable {
-		public static final int[] CameraBridgeViewBase = { 0x7f010095, 0x7f010096 };
+		public static final int[] CameraBridgeViewBase = { 0x7f01009a, 0x7f01009b };
 		public static final int CameraBridgeViewBase_camera_id = 1;
 		public static final int CameraBridgeViewBase_show_fps = 0;
 	}

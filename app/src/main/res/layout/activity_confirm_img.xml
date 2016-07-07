@@ -5,7 +5,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="960px"
         android:id="@+id/imageViewConfirm"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
