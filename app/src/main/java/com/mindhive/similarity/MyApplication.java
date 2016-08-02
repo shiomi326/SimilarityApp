@@ -4,13 +4,17 @@ import android.app.Application;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfKeyPoint;
+
 /**
  * Created by shiom on 17/05/2016.
  */
 public class MyApplication extends Application {
     private final String TAG = "APPLICATION";
     private Bitmap objBitmap;
-//    private Mat objMat;
+    private Mat objMat;
+    private MatOfKeyPoint objMatOfKeyPoint;
 
     @Override
     public void onCreate() {
@@ -36,14 +40,13 @@ public class MyApplication extends Application {
     }
 
     //For Mat (OpenCV)
-//    public void setMatObj(Bitmap bmp){
-//        objMat = bmp;
-//    }
-//    public Bitmap getMatObj(){
-//        return objMat;
-//    }
-//    public void clearMatObj(){
-//        objMat = null;
-//    }
+    public void setMatObj(Mat mat){objMat = mat;}
+    public Mat getMatObj(){return objMat;}
+    public void clearMatObj(){objMat = null;}
+
+    //For Mat of Keypoint (OpenCV)
+    public void setMatOfKeyPointObj(MatOfKeyPoint matOfKeyPoint){objMatOfKeyPoint = matOfKeyPoint;}
+    public MatOfKeyPoint getMatOfKeyPointObj(){return objMatOfKeyPoint;}
+    public void clearMatOfKeyPointObj(){objMatOfKeyPoint = null;}
 
 }

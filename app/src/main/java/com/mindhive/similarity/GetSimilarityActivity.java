@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -49,7 +51,7 @@ import java.util.List;
 /**
  * Created by shiomi on 5/05/16.
  */
-public class GetSimilarityActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class GetSimilarityActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2, View.OnTouchListener {
 
     // Load OpenCV 3.0
     static {
@@ -68,8 +70,10 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
     private MatOfKeyPoint keyPoints;
     private Mat src_descriptor;
     private Mat descriptor;
-    private int src_keyNum = 0;
     private MatOfDMatch matches;
+    private int matchMethod = 0;
+    private Point src_center;
+    private int src_radius;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +91,8 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
 
         Bitmap transBitmap = GetTranceBitmap2(rdBitmap, src_keyPoints);
         imgView.setImageBitmap(transBitmap);
+//        imgView.setImageBitmap(rdBitmap);
+        imgView.setOnTouchListener(this);
 
         // Feature values
         keyPoints = new MatOfKeyPoint();
@@ -108,6 +114,17 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
 
     }
 
+    public boolean onTouch(View v, MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+            matchMethod++;
+            if(matchMethod>5) matchMethod = 0;
+            int threhold = 4+(matchMethod+1)*4;
+            Toast.makeText(this, "Threshold="+ threhold, Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
 
     // Read OpenCV
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -182,14 +199,12 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
         for (int i=0; i < KeyNum; i++) {
             srcPoints[i] = new Point(srckeyPointsList.get(i).pt.x * ConfirmImgActivity.mScale,
                                     srckeyPointsList.get(i).pt.y * ConfirmImgActivity.mScale);
-//            srcPoints[i].x = srckeyPointsList.get(i).pt.x * ConfirmImgActivity.mScale;
-//            srcPoints[i].y = srckeyPointsList.get(i).pt.y * ConfirmImgActivity.mScale;
         }
         MatOfPoint2f MatofPoint2f = new MatOfPoint2f(srcPoints);
-        Point center = new Point();
+        src_center = new Point();
         float[] radiusArray = new float[1];
-        Imgproc.minEnclosingCircle(MatofPoint2f, center, radiusArray);
-        int radius = (int)(radiusArray[0]*1.2);
+        Imgproc.minEnclosingCircle(MatofPoint2f, src_center, radiusArray);
+        src_radius = (int)(radiusArray[0]*1.4);
 
         // Create Bitmap
         int width = srcBitmap.getWidth();
@@ -202,7 +217,7 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
 
         for(int y=0; y<height; y++){
             for(int x=0; x<width; x++) {
-                if(!checkInside(x,y, (int)center.x, (int)center.y, radius)) {
+                if(!checkInside(x,y, (int)src_center.x, (int)src_center.y, src_radius)) {
                     pixels[x + y * width] = 0;
                 }
             }
@@ -319,39 +334,6 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
 
         if( !src_keyPoints.empty() && !keyPoints.empty()){
 
-            //Find Match Points and Calc match rates
-            DescriptorMatcher matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
-            matcher.match(src_descriptor, descriptor, matches);
-
-            // Find min distance
-            double minDistance = 1000;
-            List<DMatch> matchesList = matches.toList();
-            KeyPoint minSrcKeyPoint;
-            for (int i = 0; i < matchesList.size(); i++) {
-                double dist = matchesList.get(i).distance;
-                if (dist < minDistance) {
-                    minDistance = dist;
-                }
-            }
-
-
-            double threshold = 60.0;
-//            double threshold = minDistance*3.0;
-//            List<DMatch> matchesList = matches.toList();
-            LinkedList<DMatch> listOfGoodMatches = new LinkedList<>();
-
-            // find good features
-            for (int i=0; i<matchesList.size(); i++){
-                if(matchesList.get(i).distance < threshold){
-                    listOfGoodMatches.add(matchesList.get(i));
-                }
-            }
-
-            //Find good match key points
-            List<KeyPoint> src_keyPointsList = src_keyPoints.toList();
-            List<KeyPoint> keyPointsList = keyPoints.toList();
-            LinkedList<KeyPoint> listOfGoodKeyPoints = new LinkedList<>();
-
             //draw detect Match
 //            for (int i=0; i<keyPointsList.size(); i++){
 //                //draw
@@ -360,10 +342,43 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
 //                        , (int)(trainKey.size*ConfirmImgActivity.mScale), new Scalar(255,255,0,255));
 //            }
 
-            int matchNum = listOfGoodMatches.size();
-            int queryIdx, trainIdx;
-            double range = detectMat.height()/7.0; //30
+            //Find Match Points and Calc match rates
+            DescriptorMatcher matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
+            matcher.match(src_descriptor, descriptor, matches);
 
+            // Find min distance
+            double minDistance = 1000;
+            List<DMatch> matchesList = matches.toList();
+            int queryIdx=0, trainIdx=0;
+            for (int i = 0; i < matchesList.size(); i++) {
+                double dist = matchesList.get(i).distance;
+                if (dist < minDistance) {
+                    minDistance = dist;
+                    queryIdx = matchesList.get(i).queryIdx;
+                    trainIdx = matchesList.get(i).trainIdx;
+                }
+            }
+
+            List<KeyPoint> src_keyPointsList = src_keyPoints.toList();
+            List<KeyPoint> keyPointsList = keyPoints.toList();
+            Point minDisSrcPoint = src_keyPointsList.get(queryIdx).pt;
+            Point minDisPoint = keyPointsList.get(trainIdx).pt;
+
+
+            double threshold = 60;
+//            double threshold = minDistance*3.0;
+            LinkedList<DMatch> listOfGoodMatches = new LinkedList<>();
+            // find good features
+            for (int i=0; i<matchesList.size(); i++){
+                if(matchesList.get(i).distance < threshold){
+                    listOfGoodMatches.add(matchesList.get(i));
+                }
+            }
+
+            //Find good match key points
+            int matchNum = listOfGoodMatches.size();
+
+            // this values are for findHomography function
             LinkedList<Point> queryList = new LinkedList<>();
             LinkedList<Point> trainList = new LinkedList<>();
 
@@ -371,37 +386,60 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
                 queryIdx = listOfGoodMatches.get(i).queryIdx;
                 trainIdx = listOfGoodMatches.get(i).trainIdx;
 
-                //find same position
-                KeyPoint queryKey = src_keyPointsList.get(queryIdx);
-                KeyPoint trainKey = keyPointsList.get(trainIdx);
+                //find match keypoints
+                Point queryPos = src_keyPointsList.get(queryIdx).pt;
+                Point trainPos = keyPointsList.get(trainIdx).pt;
 
                 // Check Position
-                if(queryKey.pt.x+range > trainKey.pt.x && queryKey.pt.x-range < trainKey.pt.x
-                        && queryKey.pt.y+range > trainKey.pt.y && queryKey.pt.y-range < trainKey.pt.y){
-                    listOfGoodKeyPoints.add(trainKey);
-                    queryList.addLast(queryKey.pt);
-                    trainList.addLast(trainKey.pt);
-                    //draw
-                    Imgproc.circle(rgba, new Point((int)trainKey.pt.x*ConfirmImgActivity.mScale,(int)trainKey.pt.y*ConfirmImgActivity.mScale),
-                            (int)(trainKey.size*ConfirmImgActivity.mScale), new Scalar(255,255,0,255));
+                double disThreshold = 4+(matchMethod+1)*4;
+                if(checkPointsRelation(minDisSrcPoint, minDisPoint, queryPos, trainPos, disThreshold)){
+                    Point checkPoint = new Point(trainPos.x * ConfirmImgActivity.mScale, trainPos.y * ConfirmImgActivity.mScale);
+                    // train position has to be inside reference circle
+                    if(checkInside((int)checkPoint.x, (int)checkPoint.y, (int)src_center.x, (int)src_center.y, src_radius)) {
+                        queryList.addLast(queryPos);
+                        trainList.addLast(trainPos);
+                        //draw
+                        float size = keyPointsList.get(trainIdx).size;
+                        Imgproc.circle(rgba, new Point((int)trainPos.x*ConfirmImgActivity.mScale,(int)trainPos.y*ConfirmImgActivity.mScale),
+                                (int)(size*ConfirmImgActivity.mScale), new Scalar(255,255,0,255));
+                    }
                 }
-//                listOfGoodKeyPoints.add(keyPointsList.get(trainIdx));
             }
-//            MatOfKeyPoint goodKp = new MatOfKeyPoint();
-//            goodKp.fromList(listOfGoodKeyPoints);
+            int goodMatchNum = trainList.size();
+
+
+            //Find a center of macth points
+            boolean correctCenter = false;
+            if(goodMatchNum > 2) {
+                Point[] srcPoints = new Point[goodMatchNum];
+                for (int i = 0; i < goodMatchNum; i++) {
+                    srcPoints[i] = new Point(trainList.get(i).x * ConfirmImgActivity.mScale,
+                            trainList.get(i).y * ConfirmImgActivity.mScale);
+                }
+
+                MatOfPoint2f MatofPoint2f = new MatOfPoint2f(srcPoints);
+                Point center = new Point();
+                float[] radiusArray = new float[1];
+                Imgproc.minEnclosingCircle(MatofPoint2f, center, radiusArray);
+
+                double centerDiff = calcDistance(src_center.x, src_center.y, center.x, center.y);
+                double range = (detectMat.height()*ConfirmImgActivity.mScale) / 8.0; //30
+                if (centerDiff < range) {
+                    correctCenter = true;
+                }
+            }
 
 
             int match_method = 0;
 
             if(match_method == 0) {
                 //Calculate match rate
-                int fmatchNum = listOfGoodKeyPoints.size();
-                double match_rate = ((double) fmatchNum / (double) src_keyPointsList.size());
+                double match_rate = ((double) goodMatchNum / (double) src_keyPointsList.size());
 
                 //Threshold
                 String result;
                 Scalar dispColor;
-                if (match_rate >= 0.50) {
+                if (match_rate >= 0.50 && correctCenter) {
                     result = String.format("Detected=%.3f", match_rate);
                     dispColor = new Scalar(0, 255, 0, 255);
                 } else {
@@ -417,7 +455,7 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
                 // Detect Object outline with findHomography (RANSAC)
                 // ===================================================================
 
-                if (listOfGoodKeyPoints.size() >= 8) {
+                if (goodMatchNum >= 8) {
 
                     //get rect from query list
                     double maxX = 0, minX = 1000, maxY = 0, minY = 1000;
@@ -517,6 +555,22 @@ public class GetSimilarityActivity extends Activity implements CameraBridgeViewB
         detectMat.release();
 
         return rgba;
+    }
+
+    private boolean checkPointsRelation(Point stdQueryPos, Point stdTrainPos, Point queryPos, Point trainPos, double threshold){
+
+        double queryDis = calcDistance(stdQueryPos.x, stdQueryPos.y, queryPos.x, queryPos.y);
+        double trainDis = calcDistance(stdTrainPos.x, stdTrainPos.y, trainPos.x, trainPos.y);
+
+        if(Math.abs(queryDis-trainDis) < threshold){
+            return true;
+        }
+        return false;
+    }
+    private double calcDistance(double x1,double y1,double x2,double y2) {
+        double x = x1 - x2;
+        double y = y1 - y2;
+        return Math.sqrt( (x * x + y * y));
     }
 
 

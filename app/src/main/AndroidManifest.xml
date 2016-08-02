@@ -37,8 +37,12 @@
             android:name=".ModeStdActivity"
             android:screenOrientation="portrait" />
         <!-- android:label="@string/app_name" android:screenOrientation="landscape"/> -->
-        <activity android:name=".ReferImgActivity" />
-        <activity android:name=".ConfirmImgActivity" />
+        <activity
+            android:name=".ReferImgActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ConfirmImgActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"></activity>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,6 +42,12 @@ public class ReferImgActivity extends Activity {
                 }
             }
 
+            //Sort
+            Collections.sort(imgList);
+            Collections.sort(imgPath);
+            Collections.reverse(imgList);
+            Collections.reverse(imgPath);
+
             lv = (ListView) findViewById(R.id.listView);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, imgList);
             lv.setAdapter(adapter);
@@ -48,9 +55,6 @@ public class ReferImgActivity extends Activity {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                    ListView listView = (ListView) parent;
-//                    String item = (String) listView.getItemAtPosition(position);
-//                    showItem(item);
 
                     String item = imgPath.get(position);
                     // Intent Activity

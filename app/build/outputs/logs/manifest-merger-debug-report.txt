@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:2:1-47:12
+ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:2:1-51:12
 	package
 		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:3:5-38
 		INJECTED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml
@@ -46,7 +46,7 @@ ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\mai
 	android:name
 		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:16:22-69
 application
-ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:18:5-45:19
+ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:18:5-49:19
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
@@ -104,19 +104,23 @@ ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\mai
 	android:name
 		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:37:13-44
 activity#com.mindhive.similarity.ReferImgActivity
-ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:40:9-54
+ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:40:9-42:52
+	android:screenOrientation
+		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:42:13-49
 	android:name
-		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:40:19-51
+		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:41:13-45
 activity#com.mindhive.similarity.ConfirmImgActivity
-ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:41:9-56
+ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:43:9-45:52
+	android:screenOrientation
+		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:45:13-49
 	android:name
-		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:41:19-53
+		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:44:13-47
 activity#com.mindhive.similarity.LoginActivity
-ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:42:9-44:69
+ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:46:9-48:69
 	android:label
-		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:44:13-57
+		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:48:13-57
 	android:name
-		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:43:13-42
+		ADDED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml:47:13-42
 uses-sdk
 INJECTED from C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [Similarity.libs:opencv:unspecified] C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\exploded-aar\Similarity.libs\opencv\unspecified\AndroidManifest.xml:7:5-9:41

@@ -26,7 +26,7 @@
         jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="31a9b9efc74d9075a7812d2e5fa4c2432090d401">
+        sha1="7820cff75b32434625777a2c32ebe7efc27f080f">
         <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_638053fc3f7c50965346e21cd3aef9336c8639a4\classes.dex" />
     </item>
     <item
@@ -47,7 +47,7 @@
         jar="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="3c4ffa9055565a6637454b9595e9b65d7d81f628">
+        sha1="0958dabb46a38777331b95eb1001bec0e81fc680">
         <dex dex="C:\Users\shiom\Documents\AndroidStudioProjects\Similarity\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_164cbe2219c90f0830cc5ccb7f97695f02fd1343\classes.dex" />
     </item>
     <item
